@@ -24,6 +24,12 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         self.dataProvider = provider
         self.collectionView = collectionView
         super.init()
+     //   registerCells()
+    }
+    
+    func registerCells() {
+        let nib = UINib(nibName: Cell.nibName, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
     }
     
     func setupDatasource() {
@@ -32,7 +38,6 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.cellReuseIdentifier, for: indexPath) as? Cell,
             let item = dataProvider.item(at: indexPath)
@@ -45,17 +50,14 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return dataProvider.numberofSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return dataProvider.numberOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return Cell.cellSize
     }
 }
@@ -77,7 +79,6 @@ class CollectionViewDataProvider<T>: DataProvider {
     }
     
     func item(at indexPath: IndexPath) -> T? {
-        
         guard indexPath.section >= 0, indexPath.section < items.count else { return nil }
         let sectionItems = items[indexPath.section]
         guard indexPath.row >= 0, indexPath.row < sectionItems.count else { return nil }

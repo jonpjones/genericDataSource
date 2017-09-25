@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSourceA = ArrayDataSource<ItemA, CellA>(from: Items.allA, collectionView: collectionView)
-        
         dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
         dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
         
@@ -28,14 +27,12 @@ class ViewController: UIViewController {
     func setDataSource(source: UICollectionViewDelegate & UICollectionViewDataSource) {
         collectionView.dataSource = source
         collectionView.delegate = source
-        
         collectionView.reloadData()
     }
 
     @IBAction func segmentedControlStateChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            
             setDataSource(source: dataSourceA)
         case 1:
             setDataSource(source: dataSourceB)
