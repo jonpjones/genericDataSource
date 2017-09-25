@@ -20,7 +20,10 @@ class ViewController: UIViewController {
         dataSourceA = ArrayDataSource<ItemA, ExampleCellA>(from: Items.allA, collectionView: collectionView)
         dataSourceB = ArrayDataSource<ItemB, ExampleCellB>(from: Items.allB, collectionView: collectionView)
         dataSourceC = ArrayDataSource<ItemC, ExampleCellC>(from: Items.allC, collectionView: collectionView)
+        
+        setDataSource(source: dataSourceA)
     }
+
     
     func setDataSource(source: UICollectionViewDelegate & UICollectionViewDataSource) {
         collectionView.dataSource = source
