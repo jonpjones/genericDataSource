@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         
         setDataSource(source: dataSourceA)
     }
-
     
     func setDataSource(source: UICollectionViewDelegate & UICollectionViewDataSource) {
         collectionView.dataSource = source
