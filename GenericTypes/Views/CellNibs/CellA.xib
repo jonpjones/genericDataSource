@@ -12,12 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CellA" customModule="GenericTypes" customModuleProvider="target">
             <connections>
-                <outlet property="subtitleLabel" destination="BEA-ws-XfB" id="Hvs-e9-Axr"/>
-                <outlet property="titleLabel" destination="w1p-g6-KMt" id="69Z-Ah-bul"/>
+                <outlet property="subtitleLabel" destination="BEA-ws-XfB" id="xOM-te-t9S"/>
+                <outlet property="titleLabel" destination="w1p-g6-KMt" id="nmE-av-rPG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExampleCellA" id="gTV-IL-0wX">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellA" id="gTV-IL-0wX">
             <rect key="frame" x="0.0" y="0.0" width="250" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

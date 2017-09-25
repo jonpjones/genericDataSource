@@ -14,11 +14,16 @@ class NibDefinedCell: UICollectionViewCell {
         return String(describing: type(of: self)).components(separatedBy: ".").first!
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         xibSetup()
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        xibSetup()
+    }
+ 
     func xibSetup() {
         guard let view = loadViewFromNib() else { return }
         view.frame = bounds

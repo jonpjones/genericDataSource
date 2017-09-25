@@ -24,12 +24,11 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         self.dataProvider = provider
         self.collectionView = collectionView
         super.init()
-     //   registerCells()
+        registerCells()
     }
     
     func registerCells() {
-        let nib = UINib(nibName: Cell.nibName, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
     }
     
     func setupDatasource() {
@@ -44,7 +43,6 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             else {
                 fatalError("Could Not Dequeue Cell or get item from provider")
         }
-        
         cell.config(item, at: indexPath)
         return cell
     }
