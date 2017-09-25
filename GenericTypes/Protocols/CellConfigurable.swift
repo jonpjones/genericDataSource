@@ -12,6 +12,17 @@ import UIKit
 public protocol ReusableCell {
     static var cellSize: CGSize { get }
     static var cellReuseIdentifier: String { get }
+    static var nibName: String { get }
+}
+
+extension ReusableCell where Self: UICollectionViewCell {    
+    static var nibName: String {
+        return String(describing: type(of: self)).components(separatedBy: ".").first!
+    }
+    
+    static var cellReuseIdentifier: String {
+        return String(describing: type(of: self)).components(separatedBy: ".").first!
+    }
 }
 
 protocol CellConfigurable: ReusableCell {

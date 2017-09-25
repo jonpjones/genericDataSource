@@ -32,29 +32,33 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.cellReuseIdentifier, for: indexPath) as? Cell,
             let item = dataProvider.item(at: indexPath)
             else {
                 fatalError("Could Not Dequeue Cell or get item from provider")
         }
+        
         cell.config(item, at: indexPath)
         return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
         return dataProvider.numberofSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return dataProvider.numberOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return Cell.cellSize
     }
 }
-
 
 class CollectionViewDataProvider<T>: DataProvider {
     var items: [[T]]
@@ -73,6 +77,7 @@ class CollectionViewDataProvider<T>: DataProvider {
     }
     
     func item(at indexPath: IndexPath) -> T? {
+        
         guard indexPath.section >= 0, indexPath.section < items.count else { return nil }
         let sectionItems = items[indexPath.section]
         guard indexPath.row >= 0, indexPath.row < sectionItems.count else { return nil }

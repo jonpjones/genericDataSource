@@ -1,17 +1,19 @@
 //
-//  ExampleCellA.swift
+//  CellA.swift
 //  GenericTypes
 //
-//  Created by Jonathan Jones on 9/21/17.
+//  Created by Jonathan Jones on 9/25/17.
 //  Copyright © 2017 Jonathan Jones. All rights reserved.
 //
 
 import UIKit
 
-class ExampleCellA: UICollectionViewCell, CellConfigurable {
-    static var cellSize: CGSize = CGSize(width: 180, height: 90)
-    static var cellReuseIdentifier: String = "ExampleCellA"
-    
+@IBDesignable
+class CellA: NibDefinedCell, CellConfigurable {
+    static var cellSize: CGSize {
+        return  CGSize(width: 180, height: 100)
+    }
+
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
@@ -20,4 +22,3 @@ class ExampleCellA: UICollectionViewCell, CellConfigurable {
         subtitleLabel.text = item.subtitle
     }
 }
-

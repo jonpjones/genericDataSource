@@ -1,17 +1,16 @@
 //
-//  ExampleCellC.swift
+//  CellC.swift
 //  GenericTypes
 //
-//  Created by Jonathan Jones on 9/21/17.
+//  Created by Jonathan Jones on 9/25/17.
 //  Copyright © 2017 Jonathan Jones. All rights reserved.
 //
 
 import UIKit
 
-class ExampleCellC: UICollectionViewCell, CellConfigurable {
-    static var cellSize: CGSize = CGSize(width: 120, height: 100)
-    static var cellReuseIdentifier: String = "ExampleCellC"
-
+class CellC: NibDefinedCell, CellConfigurable {
+    static var cellSize: CGSize = CGSize(width: 120, height: 150)
+    
     @IBOutlet var latinTextView: UITextView!
     @IBOutlet var titleLabel: UILabel!
     

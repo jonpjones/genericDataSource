@@ -11,15 +11,16 @@ import CoreData
 class ViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
-    var dataSourceA: ArrayDataSource<ItemA, ExampleCellA>!
-    var dataSourceB: ArrayDataSource<ItemB, ExampleCellB>!
-    var dataSourceC: ArrayDataSource<ItemC, ExampleCellC>!
+    var dataSourceA: ArrayDataSource<ItemA, CellA>!
+    var dataSourceB: ArrayDataSource<ItemB, CellB>!
+    var dataSourceC: ArrayDataSource<ItemC, CellC>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourceA = ArrayDataSource<ItemA, ExampleCellA>(from: Items.allA, collectionView: collectionView)
-        dataSourceB = ArrayDataSource<ItemB, ExampleCellB>(from: Items.allB, collectionView: collectionView)
-        dataSourceC = ArrayDataSource<ItemC, ExampleCellC>(from: Items.allC, collectionView: collectionView)
+        dataSourceA = ArrayDataSource<ItemA, CellA>(from: Items.allA, collectionView: collectionView)
+        
+        dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
+        dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
         
         setDataSource(source: dataSourceA)
     }
@@ -27,12 +28,14 @@ class ViewController: UIViewController {
     func setDataSource(source: UICollectionViewDelegate & UICollectionViewDataSource) {
         collectionView.dataSource = source
         collectionView.delegate = source
+        
         collectionView.reloadData()
     }
 
     @IBAction func segmentedControlStateChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
+            
             setDataSource(source: dataSourceA)
         case 1:
             setDataSource(source: dataSourceB)

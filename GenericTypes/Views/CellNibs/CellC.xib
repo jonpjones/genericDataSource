@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CellC" customModule="GenericTypes" customModuleProvider="target">
+            <connections>
+                <outlet property="latinTextView" destination="pU8-LX-rOk" id="WTe-d4-gMX"/>
+                <outlet property="titleLabel" destination="QlQ-jC-hLr" id="jJm-Dv-19e"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellC" id="gTV-IL-0wX">
+            <rect key="frame" x="0.0" y="0.0" width="183" height="139"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="183" height="139"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsi-v0-flu">
+                        <rect key="frame" x="0.0" y="0.0" width="183" height="139"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlQ-jC-hLr">
+                                <rect key="frame" x="0.0" y="5" width="183" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DSJ-cE-4dr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Small multi line text to inform you that this is, in fact, a different cell. Lorem Ipsum and all that. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pU8-LX-rOk">
+                                <rect key="frame" x="0.0" y="40" width="183" height="99"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.75542956590652466" green="0.89397352933883667" blue="0.93918728828430176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pU8-LX-rOk" firstAttribute="top" secondItem="QlQ-jC-hLr" secondAttribute="bottom" constant="5" id="5Y2-5D-NVn"/>
+                            <constraint firstItem="QlQ-jC-hLr" firstAttribute="top" secondItem="hsi-v0-flu" secondAttribute="top" constant="5" id="AQI-gd-yZX"/>
+                            <constraint firstItem="QlQ-jC-hLr" firstAttribute="leading" secondItem="hsi-v0-flu" secondAttribute="leading" id="E0c-fp-mBZ"/>
+                            <constraint firstAttribute="trailing" secondItem="pU8-LX-rOk" secondAttribute="trailing" id="SpI-u4-Rdl"/>
+                            <constraint firstItem="pU8-LX-rOk" firstAttribute="leading" secondItem="hsi-v0-flu" secondAttribute="leading" id="cnr-aE-1Ue"/>
+                            <constraint firstAttribute="trailing" secondItem="QlQ-jC-hLr" secondAttribute="trailing" id="eqh-BB-C4G"/>
+                            <constraint firstAttribute="bottom" secondItem="pU8-LX-rOk" secondAttribute="bottom" id="lNv-RW-Z3p"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hsi-v0-flu" secondAttribute="bottom" id="EBH-Ul-4ge"/>
+                <constraint firstAttribute="trailing" secondItem="hsi-v0-flu" secondAttribute="trailing" id="UHV-3J-po7"/>
+                <constraint firstItem="hsi-v0-flu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hdF-EZ-Mly"/>
+                <constraint firstItem="hsi-v0-flu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hmD-v9-x26"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="183" height="139"/>
+            <point key="canvasLocation" x="91.5" y="96.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
