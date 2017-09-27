@@ -19,11 +19,14 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
 {
     let dataProvider: Provider
     let collectionView: UICollectionView
+    var didSelect: ((Provider.T) -> ()) = { _ in }
     
-    init(provider: Provider, collectionView: UICollectionView) {
+    init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil) {
         self.dataProvider = provider
         self.collectionView = collectionView
         super.init()
+        self.didSelect = didSelect ?? self.didSelect
+        setupDatasource()
         registerCells()
     }
     
@@ -44,6 +47,8 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
                 fatalError("Could Not Dequeue Cell or get item from provider")
         }
         cell.config(item, at: indexPath)
+        
+        print(cell.isUserInteractionEnabled)
         return cell
     }
     
@@ -57,6 +62,24 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return Cell.cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        
+        
+        print("test")
+        return true
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("deselect")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let item = dataProvider.item(at: indexPath) {
+            self.didSelect(item)
+        }
     }
 }
 

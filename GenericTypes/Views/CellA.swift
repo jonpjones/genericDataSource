@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class CellA: NibDefinedCell, CellConfigurable {
     static var cellSize: CGSize {
         return  CGSize(width: 180, height: 100)
