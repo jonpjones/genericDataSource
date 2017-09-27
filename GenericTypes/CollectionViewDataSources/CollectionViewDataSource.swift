@@ -29,7 +29,6 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             self.didSelect = selection
         }
         super.init()
-    //    setupDatasource()
         registerCells()
     }
 
@@ -131,6 +130,5 @@ class CollectionViewDataProvider<T>: DataProvider {
         var itemSection = items[indexPath.section]
         itemSection.remove(at: indexPath.row)
         items[indexPath.section] = itemSection
-        print("ItemRemoved")
     }
 }
