@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourceA = ArrayDataSource<ItemA,CellA>(from: [Items.allA], collectionView: collectionView) { (item) in
+        dataSourceA = ArrayDataSource<ItemA,CellA>(from: Items.allA, collectionView: collectionView) { (item) in
             print("\(item.title) is being selected")
         }
         
@@ -43,6 +43,15 @@ class ViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        
+        print("Add button")
+    }
+    
+    @IBAction func removeButtonTapped(_ sender: UIButton) {
+        print("Remove button")
     }
 }
 

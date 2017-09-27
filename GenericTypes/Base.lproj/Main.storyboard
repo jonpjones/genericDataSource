@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TpI-FA-3bm">
-                                <rect key="frame" x="15" y="87" width="345" height="580"/>
+                                <rect key="frame" x="15" y="87" width="345" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sAl-aJ-Abl">
                                     <size key="itemSize" width="50" height="50"/>
@@ -57,17 +58,70 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGa-3O-dD4">
+                                <rect key="frame" x="189" y="572" width="150" height="75"/>
+                                <color key="backgroundColor" red="0.77196115255355835" green="0.94357484579086304" blue="0.77426737546920776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="G4P-ks-FI7"/>
+                                    <constraint firstAttribute="width" constant="150" id="z1Z-em-CP2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add New Cell">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6kx-GY-e9T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNn-0M-XHC">
+                                <rect key="frame" x="36" y="572" width="150" height="75"/>
+                                <color key="backgroundColor" red="0.95575350522994995" green="0.83461099863052368" blue="0.86726683378219604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="0QU-dg-WIL"/>
+                                    <constraint firstAttribute="width" constant="150" id="4Tw-nC-vNn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Remove Selected">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="removeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gl6-Wt-HLw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="er1-u7-FN9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3XS-gn-gxg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sGa-3O-dD4" secondAttribute="bottom" constant="20" id="3zm-SI-zN0"/>
+                            <constraint firstItem="XNn-0M-XHC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="5j1-E5-B7O"/>
                             <constraint firstItem="UAT-a8-ukC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5ki-rb-mSX"/>
                             <constraint firstItem="er1-u7-FN9" firstAttribute="top" secondItem="UAT-a8-ukC" secondAttribute="bottom" constant="3" id="BH9-4Z-Pm1"/>
                             <constraint firstItem="UAT-a8-ukC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F8i-sz-Ts8"/>
+                            <constraint firstItem="sGa-3O-dD4" firstAttribute="top" secondItem="TpI-FA-3bm" secondAttribute="bottom" constant="10" id="L4O-g6-Gm7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sGa-3O-dD4" secondAttribute="trailing" constant="20" id="Stg-IT-Op1"/>
                             <constraint firstItem="TpI-FA-3bm" firstAttribute="top" secondItem="er1-u7-FN9" secondAttribute="bottom" constant="15" id="Xcr-ee-9jb"/>
                             <constraint firstAttribute="trailing" secondItem="TpI-FA-3bm" secondAttribute="trailing" constant="15" id="aww-1q-CXQ"/>
                             <constraint firstItem="TpI-FA-3bm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="ccm-YF-aRI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TpI-FA-3bm" secondAttribute="bottom" id="nDe-SO-fxH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XNn-0M-XHC" secondAttribute="bottom" constant="20" id="yvW-N1-is0"/>
                         </constraints>
                     </view>
                     <connections>

@@ -33,6 +33,11 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         registerCells()
     }
     
+    func addItem(value: Provider.T, in section: Int) {
+        dataProvider.appendItem(value: value, in: section)
+        
+    }
+    
     func registerCells() {
         let nib = UINib(nibName: Cell.nibName, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
@@ -98,5 +103,12 @@ class CollectionViewDataProvider<T>: DataProvider {
     
     func updateItem(at indexPath: IndexPath, value: T) {
         items[indexPath.section][indexPath.row] = value
+    }
+    
+    func appendItem(value: T, in section: Int) {
+        guard section < items.count else { return }
+        var itemSection = items[section]
+        itemSection.append(value)
+        items[section] = itemSection
     }
 }
