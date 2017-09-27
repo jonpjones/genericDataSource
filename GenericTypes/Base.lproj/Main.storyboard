@@ -126,6 +126,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="TpI-FA-3bm" id="gTv-lO-DWO"/>
+                        <outlet property="segmentedControl" destination="er1-u7-FN9" id="6GN-WS-Jei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

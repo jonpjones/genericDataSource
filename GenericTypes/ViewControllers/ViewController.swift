@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 class ViewController: UIViewController {
 
+    @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
     var dataSourceA: ArrayDataSource<ItemA, CellA>!
     var dataSourceB: ArrayDataSource<ItemB, CellB>!
@@ -46,12 +47,33 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        
-        print("Add button")
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            let itemA = ItemA(title: "A New String", subtitle: "With Crazy New Features")
+            dataSourceA.addItem(value: itemA, in: 0)
+        case 1:
+            let itemB = ItemB(title: "New Sport", image: #imageLiteral(resourceName: "basketBall"))
+            dataSourceB.addItem(value: itemB, in: 0)
+        case 2:
+            let itemC = ItemC(title: "New Cell", description: "New Cell New You It's The Only Way")
+            dataSourceC.addItem(value: itemC, in: 0)
+        default:
+            break
+        }
     }
     
     @IBAction func removeButtonTapped(_ sender: UIButton) {
-        print("Remove button")
+        guard let selectedItems = collectionView.indexPathsForSelectedItems else { return }
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            dataSourceA.removeItems(at: selectedItems)
+        case 1:
+            dataSourceB.removeItems(at: selectedItems)
+        case 2:
+            dataSourceC.removeItems(at: selectedItems)
+        default:
+            break
+        }
     }
 }
 

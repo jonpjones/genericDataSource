@@ -15,4 +15,5 @@ protocol DataProvider {
     func item(at indexPath: IndexPath) -> T?
     func updateItem(at indexPath: IndexPath, value: T)
     func appendItem(value: T, in section: Int)
+    func removeItem(at: IndexPath)
 }

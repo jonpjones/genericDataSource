@@ -10,7 +10,11 @@ import UIKit
 
 class CellA: UICollectionViewCell, CellConfigurable {
     static var cellSize: CGSize = CGSize(width: 180, height: 100)
-
+    override var isSelected: Bool {
+        didSet {
+            self.backgroundColor = isSelected ? .lightGray : .darkGray
+        }
+    }
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
@@ -18,6 +22,7 @@ class CellA: UICollectionViewCell, CellConfigurable {
         titleLabel.text = item.title
         subtitleLabel.text = item.subtitle
     }
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
         print("Button tapped")
     }

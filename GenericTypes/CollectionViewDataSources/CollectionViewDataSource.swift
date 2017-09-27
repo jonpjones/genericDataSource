@@ -32,11 +32,7 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     //    setupDatasource()
         registerCells()
     }
-    
-    func addItem(value: Provider.T, in section: Int) {
-        dataProvider.appendItem(value: value, in: section)
-        
-    }
+
     
     func registerCells() {
         let nib = UINib(nibName: Cell.nibName, bundle: nil)
@@ -55,6 +51,11 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             else {
                 fatalError("Could Not Dequeue Cell or get item from provider")
         }
+        
+        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
+            cell.isSelected = selectedIndexPaths.contains(indexPath)
+        }
+        
         cell.config(item, at: indexPath)
         return cell
     }
@@ -75,6 +76,19 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         if let item = dataProvider.item(at: indexPath) {
             self.didSelect(item)
         }
+    }
+    
+    //MARK: Functions for DataSource
+    func removeItems(at indexPaths: [IndexPath]) {
+        indexPaths.forEach { (indexPath) in
+            dataProvider.removeItem(at: indexPath)
+        }
+        collectionView.reloadData()
+    }
+    
+    func addItem(value: Provider.T, in section: Int) {
+        dataProvider.appendItem(value: value, in: section)
+        collectionView.reloadData()
     }
 }
 
@@ -110,5 +124,13 @@ class CollectionViewDataProvider<T>: DataProvider {
         var itemSection = items[section]
         itemSection.append(value)
         items[section] = itemSection
+    }
+    
+    func removeItem(at indexPath: IndexPath) {
+        guard indexPath.section < items.count else { return }
+        var itemSection = items[indexPath.section]
+        itemSection.remove(at: indexPath.row)
+        items[indexPath.section] = itemSection
+        print("ItemRemoved")
     }
 }

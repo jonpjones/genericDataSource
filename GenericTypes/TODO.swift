@@ -11,7 +11,5 @@ import Foundation
 
 /*
  TODO:
-     - Add support for add / delete cell, and for moving cells around
      - Add layout object so user can implement UI to their liking
-
 */
