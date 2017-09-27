@@ -12,18 +12,17 @@ class ViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     var dataSourceA: ArrayDataSource<ItemA, CellA>!
-  //  var dataSourceB: ArrayDataSource<ItemB, CellB>!
-  //  var dataSourceC: ArrayDataSource<ItemC, CellC>!
+    var dataSourceB: ArrayDataSource<ItemB, CellB>!
+    var dataSourceC: ArrayDataSource<ItemC, CellC>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //dataSourceA = ArrayDataSource<ItemA, CellA>(from: Items.allA, collectionView: collectionView)
         dataSourceA = ArrayDataSource<ItemA,CellA>(from: [Items.allA], collectionView: collectionView) { (item) in
             print(item.title)
             print(item.subtitle)
         }
-     //   dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
-     //   dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
+        dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
+        dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
         setDataSource(source: dataSourceA)
     }
     
@@ -38,13 +37,9 @@ class ViewController: UIViewController {
         case 0:
             setDataSource(source: dataSourceA)
         case 1:
-            fallthrough
-            
-      //      setDataSource(source: dataSourceB)
+            setDataSource(source: dataSourceB)
         case 2:
-            fallthrough
-            
-      //      setDataSource(source: dataSourceC)
+            setDataSource(source: dataSourceC)
         default:
             break
         }
