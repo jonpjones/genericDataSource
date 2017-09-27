@@ -24,14 +24,18 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil) {
         self.dataProvider = provider
         self.collectionView = collectionView
+        
+        if let selection = didSelect {
+            self.didSelect = selection
+        }
         super.init()
-        self.didSelect = didSelect ?? self.didSelect
     //    setupDatasource()
         registerCells()
     }
     
     func registerCells() {
-        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
+        let nib = UINib(nibName: Cell.nibName, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
     }
     
     func setupDatasource() {

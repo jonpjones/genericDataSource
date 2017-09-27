@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellB: NibDefinedCell, CellConfigurable {
+class CellB: UICollectionViewCell, CellConfigurable {
     static var cellSize: CGSize = CGSize(width: 320, height: 150)
     
     @IBOutlet var titleLabel: UILabel!

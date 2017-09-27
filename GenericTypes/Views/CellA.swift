@@ -8,10 +8,8 @@
 
 import UIKit
 
-class CellA: NibDefinedCell, CellConfigurable {
-    static var cellSize: CGSize {
-        return  CGSize(width: 180, height: 100)
-    }
+class CellA: UICollectionViewCell, CellConfigurable {
+    static var cellSize: CGSize = CGSize(width: 180, height: 100)
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
@@ -21,7 +19,6 @@ class CellA: NibDefinedCell, CellConfigurable {
         subtitleLabel.text = item.subtitle
     }
     @IBAction func buttonTapped(_ sender: UIButton) {
-        
         print("Button tapped")
     }
 }

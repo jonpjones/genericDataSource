@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F252FF251F796B460068F423 /* CellA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF231F796B460068F423 /* CellA.swift */; };
 		F252FF261F796B460068F423 /* CellA.xib in Resources */ = {isa = PBXBuildFile; fileRef = F252FF241F796B460068F423 /* CellA.xib */; };
-		F252FF291F7976420068F423 /* NibDefinedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF281F7976420068F423 /* NibDefinedCell.swift */; };
 		F252FF2C1F799BD80068F423 /* CellB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF2A1F799BD80068F423 /* CellB.swift */; };
 		F252FF2D1F799BD80068F423 /* CellB.xib in Resources */ = {isa = PBXBuildFile; fileRef = F252FF2B1F799BD80068F423 /* CellB.xib */; };
 		F252FF301F799D180068F423 /* CellC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF2E1F799D180068F423 /* CellC.swift */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		F252FF231F796B460068F423 /* CellA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellA.swift; sourceTree = "<group>"; };
 		F252FF241F796B460068F423 /* CellA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CellA.xib; path = ../CellNibs/CellA.xib; sourceTree = "<group>"; };
-		F252FF281F7976420068F423 /* NibDefinedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDefinedCell.swift; sourceTree = "<group>"; };
 		F252FF2A1F799BD80068F423 /* CellB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellB.swift; sourceTree = "<group>"; };
 		F252FF2B1F799BD80068F423 /* CellB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellB.xib; sourceTree = "<group>"; };
 		F252FF2E1F799D180068F423 /* CellC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellC.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 		F2F95D241F74372F0049D380 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F252FF281F7976420068F423 /* NibDefinedCell.swift */,
 				F252FF231F796B460068F423 /* CellA.swift */,
 				F252FF2A1F799BD80068F423 /* CellB.swift */,
 				F252FF2E1F799D180068F423 /* CellC.swift */,
@@ -239,7 +236,6 @@
 				F2F95D421F75C0DC0049D380 /* DataProvider.swift in Sources */,
 				F2F95D311F7441920049D380 /* CollectionViewDataSource.swift in Sources */,
 				F2F95D2F1F74392F0049D380 /* Items.swift in Sources */,
-				F252FF291F7976420068F423 /* NibDefinedCell.swift in Sources */,
 				F252FF331F7AA2480068F423 /* TODO.swift in Sources */,
 				F252FF351F7AB62D0068F423 /* BasicCVLayout.swift in Sources */,
 			);

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellC: NibDefinedCell, CellConfigurable {
+class CellC: UICollectionViewCell, CellConfigurable {
     static var cellSize: CGSize = CGSize(width: 120, height: 150)
     
     @IBOutlet var latinTextView: UITextView!
