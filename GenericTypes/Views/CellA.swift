@@ -20,4 +20,8 @@ class CellA: NibDefinedCell, CellConfigurable {
         titleLabel.text = item.title
         subtitleLabel.text = item.subtitle
     }
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        print("Button tapped")
+    }
 }

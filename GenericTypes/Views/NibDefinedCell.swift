@@ -25,16 +25,17 @@ class NibDefinedCell: UICollectionViewCell {
     }
  
     func xibSetup() {
-        guard let view = loadViewFromNib() else { return }
-        view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(view)
-        connectXib(xibView: view)
+        guard let cell = loadViewFromNib() else { return }
+        cell.frame = bounds
+        cell.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        connectXib(xibView: cell.contentView)
     }
     
-    func loadViewFromNib() -> UIView? {
+    func loadViewFromNib() -> UICollectionViewCell? {
         let nib = UINib(nibName: nibName, bundle: nil)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
+        let cell = nib.instantiate(withOwner: self, options: nil).first as? UICollectionViewCell
+        
+        return cell //nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
     func connectXib(xibView: UIView) {

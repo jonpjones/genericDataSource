@@ -18,9 +18,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSourceA = ArrayDataSource<ItemA,CellA>(from: [Items.allA], collectionView: collectionView) { (item) in
-            print(item.title)
-            print(item.subtitle)
+            print("\(item.title) is being selected")
         }
+        
         dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
         dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
         setDataSource(source: dataSourceA)
