@@ -17,9 +17,11 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     Cell: UICollectionViewCell,
     Provider.T == Cell.T
 {
-    let dataProvider: Provider
-    let collectionView: UICollectionView
-    var didSelect: ((Provider.T) -> ()) = { _ in }
+    private let dataProvider: Provider
+    private let collectionView: UICollectionView
+    private var didSelect: ((Provider.T) -> ()) = { _ in }
+    
+    public var animatesChanges: Bool = true
     
     init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil) {
         self.dataProvider = provider
@@ -31,14 +33,13 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         super.init()
         registerCells()
     }
-
     
     func registerCells() {
         let nib = UINib(nibName: Cell.nibName, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
     }
     
-    func setupDatasource() {
+    func assignAsDatasource() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -77,17 +78,28 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("deselected item")
+    }
+    
     //MARK: Functions for DataSource
     func removeItems(at indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
             dataProvider.removeItem(at: indexPath)
         }
-        collectionView.reloadData()
+        self.animatesChanges ? collectionView.deleteItems(at: indexPaths) : collectionView.reloadData()
     }
     
-    func addItem(value: Provider.T, in section: Int) {
-        dataProvider.appendItem(value: value, in: section)
-        collectionView.reloadData()
+    func insertItem(value: Provider.T, at indexPath: IndexPath) {
+        dataProvider.insertItem(value: value, at: indexPath)
+        collectionView.insertItems(at: [indexPath])
+        self.animatesChanges ? collectionView.insertItems(at: [indexPath]) : collectionView.reloadData()
+    }
+    
+    func appendItem(value: Provider.T, in section: Int) {
+        let appendedIndex = dataProvider.numberOfItems(in: section)
+        let newIndexPath = IndexPath(row: appendedIndex, section: section)
+        insertItem(value: value, at: newIndexPath)
     }
 }
 
@@ -118,11 +130,17 @@ class CollectionViewDataProvider<T>: DataProvider {
         items[indexPath.section][indexPath.row] = value
     }
     
-    func appendItem(value: T, in section: Int) {
-        guard section < items.count else { return }
-        var itemSection = items[section]
-        itemSection.append(value)
-        items[section] = itemSection
+    func insertItem(value: T, at indexPath: IndexPath) {
+        switch indexPath.section {
+        case items.count:
+            items.append([value])
+        case (0...items.count - 1):
+            var itemSection = items[indexPath.section]
+            itemSection.insert(value, at: indexPath.row)
+            items[indexPath.section] = itemSection
+        default:
+            fatalError("Unreachable IndexPath. ")
+        }
     }
     
     func removeItem(at indexPath: IndexPath) {

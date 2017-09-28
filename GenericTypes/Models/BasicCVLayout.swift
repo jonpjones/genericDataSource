@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+enum CollectionViewLayoutObjects {
+
+    
+}
+
 enum ScrollDirection {
     case vertical
     case horizontal
@@ -17,18 +22,14 @@ enum ScrollDirection {
 protocol CVLayout {
     var insets: UIEdgeInsets { get }
     var selectable: Bool { get }
-    var highlights: Bool { get }
 }
+
 extension CVLayout {
     var insets: UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
     var selectable: Bool {
-        return true
-    }
-    
-    var highlights: Bool {
         return true
     }
 }

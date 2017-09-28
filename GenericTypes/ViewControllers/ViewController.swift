@@ -50,13 +50,13 @@ class ViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let itemA = ItemA(title: "A New String", subtitle: "With Crazy New Features")
-            dataSourceA.addItem(value: itemA, in: 0)
+            dataSourceA.appendItem(value: itemA, in: 0)
         case 1:
             let itemB = ItemB(title: "New Sport", image: #imageLiteral(resourceName: "basketBall"))
-            dataSourceB.addItem(value: itemB, in: 0)
+            dataSourceB.appendItem(value: itemB, in: 0)
         case 2:
             let itemC = ItemC(title: "New Cell", description: "New Cell New You It's The Only Way")
-            dataSourceC.addItem(value: itemC, in: 0)
+            dataSourceC.appendItem(value: itemC, in: 0)
         default:
             break
         }
