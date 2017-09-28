@@ -29,6 +29,18 @@ struct Items {
         ItemA(title: "First A", subtitle: "Testing OneTwo"),
         ItemA(title: "Second A", subtitle: "Testing ThreeFour"),
         ItemA(title: "Third A", subtitle: "Testing FiveSix"),
+        ItemA(title: "Fourth A", subtitle: "Testing SevenEight"),
+        ItemA(title: "First A", subtitle: "Testing OneTwo"),
+        ItemA(title: "Second A", subtitle: "Testing ThreeFour"),
+        ItemA(title: "Third A", subtitle: "Testing FiveSix"),
+        ItemA(title: "Fourth A", subtitle: "Testing SevenEight"),
+        ItemA(title: "First A", subtitle: "Testing OneTwo"),
+        ItemA(title: "Second A", subtitle: "Testing ThreeFour"),
+        ItemA(title: "Third A", subtitle: "Testing FiveSix"),
+        ItemA(title: "Fourth A", subtitle: "Testing SevenEight"),
+        ItemA(title: "First A", subtitle: "Testing OneTwo"),
+        ItemA(title: "Second A", subtitle: "Testing ThreeFour"),
+        ItemA(title: "Third A", subtitle: "Testing FiveSix"),
         ItemA(title: "Fourth A", subtitle: "Testing SevenEight")
     ]
     

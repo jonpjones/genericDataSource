@@ -14,12 +14,12 @@ class ArrayDataSource<T, Cell>: CollectionViewDataSource<CollectionViewDataProvi
     Cell: CellConfigurable,
     Cell.T == T {
     
-    convenience init(from array: [T], collectionView: UICollectionView, didSelect: ((T) -> ())? = nil) {
-        self.init(from: [array], collectionView: collectionView, didSelect: didSelect)
+    convenience init(from array: [T], collectionView: UICollectionView, layoutHelper: CVLayoutHelper = .verticalStandard, didSelect: ((T) -> ())? = nil) {
+        self.init(from: [array], collectionView: collectionView, layoutHelper: layoutHelper, didSelect: didSelect)
     }
     
-    init(from array: [[T]], collectionView: UICollectionView, didSelect: ((T) -> ())? = nil) {
+    init(from array: [[T]], collectionView: UICollectionView, layoutHelper: CVLayoutHelper, didSelect: ((T) -> ())? = nil) {
         let dataProvider = CollectionViewDataProvider(items: array)
-        super.init(provider: dataProvider, collectionView: collectionView, didSelect: didSelect)
+        super.init(provider: dataProvider, collectionView: collectionView, didSelect: didSelect, layoutHelper: layoutHelper)
     }
 }

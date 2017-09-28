@@ -22,25 +22,23 @@ class ViewController: UIViewController {
             print("\(item.title) is being selected")
         }
         
-        dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView)
-        dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView)
-        setDataSource(source: dataSourceA)
+        dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView, layoutHelper: .horizontalStandard)
+       
+        let layoutHelper = VerticalDimension(height: 150, colCount: 1)
+        dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
+        
+        dataSourceA.assignAsDatasource(to: collectionView)
     }
-    
-    func setDataSource(source: UICollectionViewDelegate & UICollectionViewDataSource) {
-        collectionView.dataSource = source
-        collectionView.delegate = source
-        collectionView.reloadData()
-    }
+
 
     @IBAction func segmentedControlStateChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            setDataSource(source: dataSourceA)
+            dataSourceA.assignAsDatasource(to: collectionView)
         case 1:
-            setDataSource(source: dataSourceB)
+            dataSourceB.assignAsDatasource(to: collectionView)
         case 2:
-            setDataSource(source: dataSourceC)
+            dataSourceC.assignAsDatasource(to: collectionView)
         default:
             break
         }

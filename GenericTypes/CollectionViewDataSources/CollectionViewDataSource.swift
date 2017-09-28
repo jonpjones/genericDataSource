@@ -18,15 +18,28 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     Provider.T == Cell.T
 {
     private let dataProvider: Provider
-    private let collectionView: UICollectionView
+    private var collectionView: UICollectionView
+    private var layoutHelper: CVLayoutHelper
     private var didSelect: ((Provider.T) -> ()) = { _ in }
     
     public var animatesChanges: Bool = true
     
-    init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil) {
+    private lazy var cellDimension: CGSize = {
+        guard
+            let sideDimension = self.layoutHelper.sideDimension,
+            let rowOrColumnCount = self.layoutHelper.rowOrColumnCount
+        else {
+            return Cell.cellSize
+        }
+        let height = self.getCellHeight(helperCount: rowOrColumnCount, dimensionSize: sideDimension)
+        let width = self.getCellWidth(helperCount: rowOrColumnCount, dimensionSize: sideDimension)
+        return CGSize(width: width, height: height)
+    }()
+    
+    init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil, layoutHelper: CVLayoutHelper) {
         self.dataProvider = provider
         self.collectionView = collectionView
-        
+        self.layoutHelper = layoutHelper
         if let selection = didSelect {
             self.didSelect = selection
         }
@@ -39,11 +52,21 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
     }
     
-    func assignAsDatasource() {
+    func assignAsDatasource(to collectionView: UICollectionView) {
+        self.collectionView = collectionView
+        assignScrollDirection()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        self.collectionView.reloadData()
     }
     
+    func assignScrollDirection() {
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = layoutHelper.direction
+        }
+    }
+  
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.cellReuseIdentifier, for: indexPath) as? Cell,
@@ -60,6 +83,28 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         return cell
     }
     
+    private func getCellHeight(helperCount: CGFloat, dimensionSize: CGFloat) -> CGFloat {
+        if layoutHelper.direction == .vertical {
+            return layoutHelper.sideDimension ?? Cell.cellSize.height
+        } else {
+            return getItemSizeForSpacing(cvContentDimension: self.collectionView.frame.height, spacingCount: helperCount)
+        }
+    }
+    
+    private func getCellWidth(helperCount: CGFloat, dimensionSize: CGFloat) -> CGFloat {
+        if layoutHelper.direction == .horizontal {
+            return layoutHelper.sideDimension ?? Cell.cellSize.width
+        } else {
+            return getItemSizeForSpacing(cvContentDimension: self.collectionView.frame.width, spacingCount: helperCount)
+        }
+    }
+    
+    private func getItemSizeForSpacing(cvContentDimension: CGFloat, spacingCount: CGFloat) -> CGFloat {
+        let totalSpacing = (self.layoutHelper.lineSpacing) * spacingCount.rounded()
+        let usableContentSize = cvContentDimension - totalSpacing
+        return usableContentSize / spacingCount
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return dataProvider.numberofSections()
     }
@@ -69,7 +114,7 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Cell.cellSize
+        return cellDimension
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -77,12 +122,18 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             self.didSelect(item)
         }
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return layoutHelper.interItemSpacing
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return layoutHelper.lineSpacing
+    }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         print("deselected item")
     }
     
-    //MARK: Functions for DataSource
+    //MARK: Functions for DataSource Changes
     func removeItems(at indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
             dataProvider.removeItem(at: indexPath)
@@ -92,7 +143,6 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     
     func insertItem(value: Provider.T, at indexPath: IndexPath) {
         dataProvider.insertItem(value: value, at: indexPath)
-        collectionView.insertItems(at: [indexPath])
         self.animatesChanges ? collectionView.insertItems(at: [indexPath]) : collectionView.reloadData()
     }
     
