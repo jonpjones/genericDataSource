@@ -11,32 +11,16 @@ import UIKit
 
 //Data Source Abstraction
 
-class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout where
-    Provider: DataProvider,
-    Cell: CellConfigurable,
-    Cell: UICollectionViewCell,
-    Provider.T == Cell.T
-{
-    private let dataProvider: Provider
+class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    private let dataProvider: DataProvider
     private var collectionView: UICollectionView
     private var layoutHelper: CVLayoutHelper
-    private var didSelect: ((Provider.T) -> ()) = { _ in }
+    private var didSelect: ((ModelFormatting) -> ()) = { _ in }
     
     public var animatesChanges: Bool = true
     
-    private lazy var cellDimension: CGSize = {
-        guard
-            let sideDimension = self.layoutHelper.sideDimension,
-            let rowOrColumnCount = self.layoutHelper.rowOrColumnCount
-        else {
-            return Cell.cellSize
-        }
-        let height = self.getCellHeight(helperCount: rowOrColumnCount, dimensionSize: sideDimension)
-        let width = self.getCellWidth(helperCount: rowOrColumnCount, dimensionSize: sideDimension)
-        return CGSize(width: width, height: height)
-    }()
-    
-    init(provider: Provider, collectionView: UICollectionView, didSelect: ((Provider.T) -> ())? = nil, layoutHelper: CVLayoutHelper) {
+    init(provider: DataProvider, collectionView: UICollectionView, didSelect: ((ModelFormatting) -> ())? = nil, layoutHelper: CVLayoutHelper) {
         self.dataProvider = provider
         self.collectionView = collectionView
         self.layoutHelper = layoutHelper
@@ -48,8 +32,11 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func registerCells() {
-        let nib = UINib(nibName: Cell.nibName, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: Cell.cellReuseIdentifier)
+        let nameReusePairs = dataProvider.getReuseIDsAndNibNames()
+        for (reuseID, nibName) in nameReusePairs {
+            let nib = UINib(nibName: nibName, bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: reuseID)
+        }
     }
     
     func assignAsDatasource(to collectionView: UICollectionView) {
@@ -66,37 +53,13 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             flowLayout.scrollDirection = layoutHelper.direction
         }
     }
-  
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.cellReuseIdentifier, for: indexPath) as? Cell,
-            let item = dataProvider.item(at: indexPath)
-            else {
-                fatalError("Could Not Dequeue Cell or get item from provider")
+        guard let viewModel = dataProvider.item(at: indexPath) else {
+            print("No available cell!")
+            return UICollectionViewCell()
         }
-        
-        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
-            cell.isSelected = selectedIndexPaths.contains(indexPath)
-        }
-        
-        cell.config(item)
-        return cell
-    }
-    
-    private func getCellHeight(helperCount: CGFloat, dimensionSize: CGFloat) -> CGFloat {
-        if layoutHelper.direction == .vertical {
-            return layoutHelper.sideDimension ?? Cell.cellSize.height
-        } else {
-            return getItemSizeForSpacing(cvContentDimension: self.collectionView.frame.height, spacingCount: helperCount)
-        }
-    }
-    
-    private func getCellWidth(helperCount: CGFloat, dimensionSize: CGFloat) -> CGFloat {
-        if layoutHelper.direction == .horizontal {
-            return layoutHelper.sideDimension ?? Cell.cellSize.width
-        } else {
-            return getItemSizeForSpacing(cvContentDimension: self.collectionView.frame.width, spacingCount: helperCount)
-        }
+        return viewModel.collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     private func getItemSizeForSpacing(cvContentDimension: CGFloat, spacingCount: CGFloat) -> CGFloat {
@@ -114,7 +77,7 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellDimension
+        return dataProvider.item(at: indexPath)?.cellSize ?? CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -141,22 +104,22 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
         self.animatesChanges ? collectionView.deleteItems(at: indexPaths) : collectionView.reloadData()
     }
     
-    func insertItem(value: Provider.T, at indexPath: IndexPath) {
+    func insertItem(value: ModelFormatting, at indexPath: IndexPath) {
         dataProvider.insertItem(value: value, at: indexPath)
         self.animatesChanges ? collectionView.insertItems(at: [indexPath]) : collectionView.reloadData()
     }
     
-    func appendItem(value: Provider.T, in section: Int) {
+    func appendItem(value: ModelFormatting, in section: Int) {
         let appendedIndex = dataProvider.numberOfItems(in: section)
         let newIndexPath = IndexPath(row: appendedIndex, section: section)
         insertItem(value: value, at: newIndexPath)
     }
 }
 
-class CollectionViewDataProvider<T>: DataProvider {
-    var items: [[T]]
+class CollectionViewDataProvider: DataProvider {
+    var items: [[ModelFormatting]]
     
-    init(items: [[T]]) {
+    init(items: [[ModelFormatting]]) {
         self.items = items
     }
     
@@ -169,18 +132,18 @@ class CollectionViewDataProvider<T>: DataProvider {
         return sectionItems.count
     }
     
-    func item(at indexPath: IndexPath) -> T? {
+    func item(at indexPath: IndexPath) -> ModelFormatting? {
         guard indexPath.section >= 0, indexPath.section < items.count else { return nil }
         let sectionItems = items[indexPath.section]
         guard indexPath.row >= 0, indexPath.row < sectionItems.count else { return nil }
         return sectionItems[indexPath.row]
     }
     
-    func updateItem(at indexPath: IndexPath, value: T) {
+    func updateItem(at indexPath: IndexPath, value: ModelFormatting) {
         items[indexPath.section][indexPath.row] = value
     }
     
-    func insertItem(value: T, at indexPath: IndexPath) {
+    func insertItem(value: ModelFormatting, at indexPath: IndexPath) {
         switch indexPath.section {
         case items.count:
             items.append([value])
@@ -199,8 +162,14 @@ class CollectionViewDataProvider<T>: DataProvider {
         itemSection.remove(at: indexPath.row)
         items[indexPath.section] = itemSection
     }
+    
+    func getReuseIDsAndNibNames() -> [(ReuseID, NibName)] {
+        let tupleArray = items.flatMap { (arrayOfModelFormat) -> [(ReuseID, NibName)] in
+            arrayOfModelFormat.map({ ($0.reuseIdentifier, $0.nibName) })
+        }
+        return tupleArray
+    }
 }
-
 
 class DBCollection: Collection {
     func index(after i: Int) -> Int {

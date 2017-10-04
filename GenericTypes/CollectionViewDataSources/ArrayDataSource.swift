@@ -9,16 +9,13 @@
 import Foundation
 import UIKit
 
-class ArrayDataSource<T, Cell>: CollectionViewDataSource<CollectionViewDataProvider<T>, Cell> where
-    Cell: UICollectionViewCell,
-    Cell: CellConfigurable,
-    Cell.T == T {
+class ArrayDataSource: CollectionViewDataSource {
     
-    convenience init(from array: [T], collectionView: UICollectionView, layoutHelper: CVLayoutHelper = .verticalStandard, didSelect: ((T) -> ())? = nil) {
+    convenience init(from array: [ModelFormatting], collectionView: UICollectionView, layoutHelper: CVLayoutHelper = .verticalStandard, didSelect: ((ModelFormatting) -> ())? = nil) {
         self.init(from: [array], collectionView: collectionView, layoutHelper: layoutHelper, didSelect: didSelect)
     }
     
-    init(from array: [[T]], collectionView: UICollectionView, layoutHelper: CVLayoutHelper, didSelect: ((T) -> ())? = nil) {
+    init(from array: [[ModelFormatting]], collectionView: UICollectionView, layoutHelper: CVLayoutHelper, didSelect: ((ModelFormatting) -> ())? = nil) {
         let dataProvider = CollectionViewDataProvider(items: array)
         super.init(provider: dataProvider, collectionView: collectionView, didSelect: didSelect, layoutHelper: layoutHelper)
     }

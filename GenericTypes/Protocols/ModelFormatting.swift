@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 protocol ModelFormatting {
+    var nibName: String { get }
+    var reuseIdentifier: String { get }
+    var cellSize: CGSize { get }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
 }
 
@@ -22,7 +25,6 @@ extension ModelFormatting {
 
 protocol CellType: ModelFormatting {
     associatedtype Cell: UICollectionViewCell, CellConfigurable
-    
 }
 
 extension CellType where Cell.T == Self {
@@ -31,5 +33,16 @@ extension CellType where Cell.T == Self {
             fatalError("Casting error: \(#function)")
         }
         return populate(configurable: cell)
+    }
+    
+    var nibName: String {
+        return String(describing: type(of: Cell.self)).components(separatedBy: ".").first!
+    }
+    
+    var reuseIdentifier: String {
+        return String(describing: type(of: Cell.self)).components(separatedBy: ".").first!
+    }
+    var cellSize: CGSize {
+        return Cell.cellSize
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ItemCellViewModelC: CellType {
+class ItemCellViewModelC: CellType {    
     typealias Cell = CellC
     let item: ItemC
     

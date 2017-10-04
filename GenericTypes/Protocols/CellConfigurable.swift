@@ -29,6 +29,3 @@ protocol CellConfigurable: ReusableCell {
     associatedtype T
     func config(_ item: T)
 }
-
-
-

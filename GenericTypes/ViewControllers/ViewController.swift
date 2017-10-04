@@ -12,20 +12,20 @@ class ViewController: UIViewController {
 
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
-    var dataSourceA: ArrayDataSource<ItemCellViewModelA, CellA>!
-    var dataSourceB: ArrayDataSource<ItemCellViewModelB, CellB>!
-    var dataSourceC: ArrayDataSource<ItemCellViewModelC, CellC>!
+    var dataSourceA: ArrayDataSource!
+    var dataSourceB: ArrayDataSource!
+    var dataSourceC: ArrayDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourceA = ArrayDataSource<ItemCellViewModelA,CellA>(from: Items.allA.toViewModels(), collectionView: collectionView) { (item) in
-            print("\(item.item.title) is being selected")
+        dataSourceA = ArrayDataSource(from: Items.allA.toViewModels(), collectionView: collectionView) { (item) in
+            print("\(item)")
         }
         
-        dataSourceB = ArrayDataSource<ItemCellViewModelB, CellB>(from: Items.allB.toViewModels(), collectionView: collectionView, layoutHelper: .horizontalStandard)
+        dataSourceB = ArrayDataSource(from: [Items.allB.toViewModels(), Items.allA.toViewModels(), Items.allC.toViewModels()], collectionView: collectionView, layoutHelper: .horizontalStandard)
        
         let layoutHelper = VerticalDimension(height: 150, colCount: 1)
-        dataSourceC = ArrayDataSource<ItemCellViewModelC, CellC>(from: Items.allC.toViewModels(), collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
+        dataSourceC = ArrayDataSource(from: Items.allC.toViewModels(), collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
         
         dataSourceA.assignAsDatasource(to: collectionView)
     }

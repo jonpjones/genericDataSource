@@ -8,12 +8,15 @@
 
 import Foundation
 
+typealias NibName = String
+typealias ReuseID = String
+
 protocol DataProvider {
-    associatedtype T
+    func getReuseIDsAndNibNames() -> [(ReuseID, NibName)]
     func numberofSections() -> Int
     func numberOfItems(in section: Int) -> Int
-    func item(at indexPath: IndexPath) -> T?
-    func updateItem(at indexPath: IndexPath, value: T)
-    func insertItem(value: T, at: IndexPath)
+    func item(at indexPath: IndexPath) -> ModelFormatting?
+    func updateItem(at indexPath: IndexPath, value: ModelFormatting)
+    func insertItem(value: ModelFormatting, at: IndexPath)
     func removeItem(at: IndexPath)
 }
