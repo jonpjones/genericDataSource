@@ -15,15 +15,16 @@ class CellA: UICollectionViewCell, CellConfigurable {
             self.backgroundColor = isSelected ? .lightGray : .darkGray
         }
     }
+    @IBOutlet var button: UIButton!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
-    func config(_ item: ItemA, at indexPath: IndexPath) {
-        titleLabel.text = item.title
-        subtitleLabel.text = item.subtitle
+    func config(_ viewModel: ItemCellViewModelA) {
+        titleLabel.text = viewModel.item.title
+        subtitleLabel.text = viewModel.item.subtitle
+        
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        print("Button tapped")
     }
 }

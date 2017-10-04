@@ -12,16 +12,28 @@ import UIKit
 struct ItemA {
     let title: String
     let subtitle: String
+    
+    func convertToViewModel() -> ItemCellViewModelA {
+        return ItemCellViewModelA(item: self)
+    }
 }
 
 struct ItemB {
     let title: String
     let image: UIImage?
+    
+    func convertToViewModel() -> ItemCellViewModelB {
+        return ItemCellViewModelB(item: self)
+    }
 }
 
 struct ItemC {
     let title: String
     let description: String
+    
+    func convertToViewModel() -> ItemCellViewModelC {
+        return ItemCellViewModelC(item: self)
+    }
 }
 
 struct Items {
@@ -58,3 +70,34 @@ struct Items {
         ItemC(title: "Fourth C", description: "Lorem ipsum and whatever else usually goes in the latin placeholder")
     ]
 }
+
+
+extension Array where Element == ItemA {
+    func toViewModels() -> [ItemCellViewModelA] {
+        return self.map({ (item) -> ItemCellViewModelA in
+            return ItemCellViewModelA(item: item)
+        })
+    }
+}
+
+extension Array where Element == ItemB {
+    func toViewModels() -> [ItemCellViewModelB] {
+        return self.map({ (item) -> ItemCellViewModelB in
+            return ItemCellViewModelB(item: item)
+        })
+    }
+}
+
+extension Array where Element == ItemC {
+    func toViewModels() -> [ItemCellViewModelC] {
+        return self.map({ (item) -> ItemCellViewModelC in
+            return ItemCellViewModelC(item: item)
+        })
+    }
+}
+
+
+
+
+
+

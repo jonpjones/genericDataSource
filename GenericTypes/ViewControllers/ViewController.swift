@@ -12,20 +12,20 @@ class ViewController: UIViewController {
 
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
-    var dataSourceA: ArrayDataSource<ItemA, CellA>!
-    var dataSourceB: ArrayDataSource<ItemB, CellB>!
-    var dataSourceC: ArrayDataSource<ItemC, CellC>!
+    var dataSourceA: ArrayDataSource<ItemCellViewModelA, CellA>!
+    var dataSourceB: ArrayDataSource<ItemCellViewModelB, CellB>!
+    var dataSourceC: ArrayDataSource<ItemCellViewModelC, CellC>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourceA = ArrayDataSource<ItemA,CellA>(from: Items.allA, collectionView: collectionView) { (item) in
-            print("\(item.title) is being selected")
+        dataSourceA = ArrayDataSource<ItemCellViewModelA,CellA>(from: Items.allA.toViewModels(), collectionView: collectionView) { (item) in
+            print("\(item.item.title) is being selected")
         }
         
-        dataSourceB = ArrayDataSource<ItemB, CellB>(from: Items.allB, collectionView: collectionView, layoutHelper: .horizontalStandard)
+        dataSourceB = ArrayDataSource<ItemCellViewModelB, CellB>(from: Items.allB.toViewModels(), collectionView: collectionView, layoutHelper: .horizontalStandard)
        
         let layoutHelper = VerticalDimension(height: 150, colCount: 1)
-        dataSourceC = ArrayDataSource<ItemC, CellC>(from: Items.allC, collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
+        dataSourceC = ArrayDataSource<ItemCellViewModelC, CellC>(from: Items.allC.toViewModels(), collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
         
         dataSourceA.assignAsDatasource(to: collectionView)
     }
@@ -48,13 +48,13 @@ class ViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let itemA = ItemA(title: "A New String", subtitle: "With Crazy New Features")
-            dataSourceA.appendItem(value: itemA, in: 0)
+            dataSourceA.appendItem(value: itemA.convertToViewModel(), in: 0)
         case 1:
             let itemB = ItemB(title: "New Sport", image: #imageLiteral(resourceName: "basketBall"))
-            dataSourceB.appendItem(value: itemB, in: 0)
+            dataSourceB.appendItem(value: itemB.convertToViewModel(), in: 0)
         case 2:
             let itemC = ItemC(title: "New Cell", description: "New Cell New You It's The Only Way")
-            dataSourceC.appendItem(value: itemC, in: 0)
+            dataSourceC.appendItem(value: itemC.convertToViewModel(), in: 0)
         default:
             break
         }
@@ -74,4 +74,5 @@ class ViewController: UIViewController {
         }
     }
 }
+
 

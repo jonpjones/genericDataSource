@@ -14,6 +14,10 @@
 		F252FF301F799D180068F423 /* CellC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF2E1F799D180068F423 /* CellC.swift */; };
 		F252FF311F799D180068F423 /* CellC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F252FF2F1F799D180068F423 /* CellC.xib */; };
 		F252FF351F7AB62D0068F423 /* BasicCVLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF341F7AB62D0068F423 /* BasicCVLayout.swift */; };
+		F2D491291F85329500EA90E2 /* ItemCellViewModelA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D491281F85329500EA90E2 /* ItemCellViewModelA.swift */; };
+		F2D4912B1F85329D00EA90E2 /* ItemCellViewModelB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4912A1F85329D00EA90E2 /* ItemCellViewModelB.swift */; };
+		F2D4912D1F8532A600EA90E2 /* ItemCellViewModelC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4912C1F8532A600EA90E2 /* ItemCellViewModelC.swift */; };
+		F2D4912F1F8538A600EA90E2 /* ModelFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4912E1F8538A600EA90E2 /* ModelFormatting.swift */; };
 		F2F95D0F1F72F9FC0049D380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F95D0E1F72F9FC0049D380 /* AppDelegate.swift */; };
 		F2F95D111F72F9FC0049D380 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F95D101F72F9FC0049D380 /* ViewController.swift */; };
 		F2F95D141F72F9FC0049D380 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F95D121F72F9FC0049D380 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 		F252FF2E1F799D180068F423 /* CellC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellC.swift; sourceTree = "<group>"; };
 		F252FF2F1F799D180068F423 /* CellC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellC.xib; sourceTree = "<group>"; };
 		F252FF341F7AB62D0068F423 /* BasicCVLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCVLayout.swift; sourceTree = "<group>"; };
+		F2D491281F85329500EA90E2 /* ItemCellViewModelA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModelA.swift; sourceTree = "<group>"; };
+		F2D4912A1F85329D00EA90E2 /* ItemCellViewModelB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModelB.swift; sourceTree = "<group>"; };
+		F2D4912C1F8532A600EA90E2 /* ItemCellViewModelC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModelC.swift; sourceTree = "<group>"; };
+		F2D4912E1F8538A600EA90E2 /* ModelFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFormatting.swift; sourceTree = "<group>"; };
 		F2F95D0B1F72F9FC0049D380 /* GenericTypes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenericTypes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2F95D0E1F72F9FC0049D380 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2F95D101F72F9FC0049D380 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +85,16 @@
 			path = CellNibs;
 			sourceTree = "<group>";
 		};
+		F2D491271F85325600EA90E2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F2D491281F85329500EA90E2 /* ItemCellViewModelA.swift */,
+				F2D4912A1F85329D00EA90E2 /* ItemCellViewModelB.swift */,
+				F2D4912C1F8532A600EA90E2 /* ItemCellViewModelC.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F2F95D021F72F9FC0049D380 = {
 			isa = PBXGroup;
 			children = (
@@ -96,12 +114,13 @@
 		F2F95D0D1F72F9FC0049D380 /* GenericTypes */ = {
 			isa = PBXGroup;
 			children = (
+				F2F95D321F75723D0049D380 /* Models */,
+				F2F95D241F74372F0049D380 /* Views */,
+				F2D491271F85325600EA90E2 /* ViewModels */,
 				F2F95D0E1F72F9FC0049D380 /* AppDelegate.swift */,
 				F252FF221F7958CE0068F423 /* ViewControllers */,
 				F2F95D3E1F7596CF0049D380 /* CollectionViewDataSources */,
-				F2F95D321F75723D0049D380 /* Models */,
 				F2F95D2B1F74383B0049D380 /* Protocols */,
-				F2F95D241F74372F0049D380 /* Views */,
 				F2F95D121F72F9FC0049D380 /* Main.storyboard */,
 				F2F95D151F72F9FC0049D380 /* Assets.xcassets */,
 				F2F95D171F72F9FC0049D380 /* LaunchScreen.storyboard */,
@@ -125,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				F2F95D2C1F7438810049D380 /* CellConfigurable.swift */,
+				F2D4912E1F8538A600EA90E2 /* ModelFormatting.swift */,
 				F2F95D411F75C0DC0049D380 /* DataProvider.swift */,
 			);
 			path = Protocols;
@@ -223,12 +243,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2D491291F85329500EA90E2 /* ItemCellViewModelA.swift in Sources */,
+				F2D4912F1F8538A600EA90E2 /* ModelFormatting.swift in Sources */,
 				F252FF2C1F799BD80068F423 /* CellB.swift in Sources */,
 				F252FF301F799D180068F423 /* CellC.swift in Sources */,
 				F2F95D341F758B890049D380 /* ArrayDataSource.swift in Sources */,
 				F252FF251F796B460068F423 /* CellA.swift in Sources */,
+				F2D4912B1F85329D00EA90E2 /* ItemCellViewModelB.swift in Sources */,
 				F2F95D111F72F9FC0049D380 /* ViewController.swift in Sources */,
 				F2F95D2D1F7438810049D380 /* CellConfigurable.swift in Sources */,
+				F2D4912D1F8532A600EA90E2 /* ItemCellViewModelC.swift in Sources */,
 				F2F95D0F1F72F9FC0049D380 /* AppDelegate.swift in Sources */,
 				F2F95D421F75C0DC0049D380 /* DataProvider.swift in Sources */,
 				F2F95D311F7441920049D380 /* CollectionViewDataSource.swift in Sources */,

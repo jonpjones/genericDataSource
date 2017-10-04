@@ -79,7 +79,7 @@ class CollectionViewDataSource<Provider, Cell>: NSObject, UICollectionViewDataSo
             cell.isSelected = selectedIndexPaths.contains(indexPath)
         }
         
-        cell.config(item, at: indexPath)
+        cell.config(item)
         return cell
     }
     
@@ -198,5 +198,31 @@ class CollectionViewDataProvider<T>: DataProvider {
         var itemSection = items[indexPath.section]
         itemSection.remove(at: indexPath.row)
         items[indexPath.section] = itemSection
+    }
+}
+
+
+class DBCollection: Collection {
+    func index(after i: Int) -> Int {
+        return objects.index(after: i)
+    }
+    
+    var objects: [ItemA]
+    
+    var startIndex: Int {
+        return objects.startIndex
+    }
+    
+    var endIndex: Int {
+        return objects.endIndex
+    }
+    
+    subscript(position: Int) -> ItemA {
+        precondition(indices.contains(position), "Out of bounds")
+        return objects[position]
+    }
+    
+    init(with items: [ItemA]) {
+        self.objects = items
     }
 }

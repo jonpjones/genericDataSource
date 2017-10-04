@@ -27,5 +27,8 @@ extension ReusableCell where Self: UICollectionViewCell {
 
 protocol CellConfigurable: ReusableCell {
     associatedtype T
-    func config(_ item: T, at indexPath: IndexPath)
+    func config(_ item: T)
 }
+
+
+

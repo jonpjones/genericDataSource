@@ -14,8 +14,8 @@ class CellB: UICollectionViewCell, CellConfigurable {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var sportImageView: UIImageView!
     
-    func config(_ item: ItemB, at indexPath: IndexPath) {
-        titleLabel.text = item.title
-        sportImageView.image = item.image
+    func config(_ viewModel: ItemCellViewModelB) {
+        titleLabel.text = viewModel.item.title
+        sportImageView.image = viewModel.item.image
     }
 }

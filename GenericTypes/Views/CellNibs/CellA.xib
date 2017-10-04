@@ -65,6 +65,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="250" height="102"/>
             <connections>
+                <outlet property="button" destination="bJa-6z-6Gg" id="ojM-ew-nqj"/>
                 <outlet property="subtitleLabel" destination="BEA-ws-XfB" id="mxd-86-r1B"/>
                 <outlet property="titleLabel" destination="w1p-g6-KMt" id="goZ-2J-SIp"/>
             </connections>

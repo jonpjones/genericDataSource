@@ -14,8 +14,8 @@ class CellC: UICollectionViewCell, CellConfigurable {
     @IBOutlet var latinTextView: UITextView!
     @IBOutlet var titleLabel: UILabel!
     
-    func config(_ item: ItemC, at indexPath: IndexPath) {
-        self.titleLabel.text = item.title
-        self.latinTextView.text = item.description
+    func config(_ viewModel: ItemCellViewModelC) {
+        self.titleLabel.text = viewModel.item.title
+        self.latinTextView.text = viewModel.item.description
     }
 }
