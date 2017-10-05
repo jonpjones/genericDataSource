@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ItemCellViewModelA: CellType {
+class ItemCellViewModelA: CellViewModel {
     typealias Cell = CellA
     
     var didSelect: ((ItemA) -> ())?

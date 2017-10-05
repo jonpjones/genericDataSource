@@ -29,14 +29,14 @@ extension ModelFormatting {
     }
 }
 
-protocol CellType: ModelFormatting {
+protocol CellViewModel: ModelFormatting {
     associatedtype Cell: UICollectionViewCell, CellConfigurable
     associatedtype Item
     var item: Item { get }
     var didSelect: ((Item) -> ())? { get set }
 }
 
-extension CellType where Cell.T == Self {
+extension CellViewModel where Cell.T == Self {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(Cell.self)", for: indexPath) as? Cell else {
             fatalError("Casting error: \(#function)")

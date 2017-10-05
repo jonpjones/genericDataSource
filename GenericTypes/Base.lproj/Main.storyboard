@@ -22,33 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er1-u7-FN9">
-                                <rect key="frame" x="16" y="44" width="343" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="6qM-bg-45Y"/>
-                                    <constraint firstAttribute="height" constant="28" id="XnH-lC-DNA"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="A"/>
-                                    <segment title="B"/>
-                                    <segment title="C"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentedControlStateChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="MDY-iV-aaB"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cell Types" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAT-a8-ukC">
-                                <rect key="frame" x="147.5" y="20" width="80" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Lhy-5v-IGW"/>
-                                    <constraint firstAttribute="width" constant="80" id="yCh-oJ-blX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TpI-FA-3bm">
-                                <rect key="frame" x="15" y="87" width="345" height="475"/>
+                                <rect key="frame" x="15" y="65" width="345" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sAl-aJ-Abl">
                                     <size key="itemSize" width="50" height="50"/>
@@ -110,23 +85,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="er1-u7-FN9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3XS-gn-gxg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sGa-3O-dD4" secondAttribute="bottom" constant="20" id="3zm-SI-zN0"/>
                             <constraint firstItem="XNn-0M-XHC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="5j1-E5-B7O"/>
-                            <constraint firstItem="UAT-a8-ukC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5ki-rb-mSX"/>
-                            <constraint firstItem="er1-u7-FN9" firstAttribute="top" secondItem="UAT-a8-ukC" secondAttribute="bottom" constant="3" id="BH9-4Z-Pm1"/>
-                            <constraint firstItem="UAT-a8-ukC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F8i-sz-Ts8"/>
                             <constraint firstItem="sGa-3O-dD4" firstAttribute="top" secondItem="TpI-FA-3bm" secondAttribute="bottom" constant="10" id="L4O-g6-Gm7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sGa-3O-dD4" secondAttribute="trailing" constant="20" id="Stg-IT-Op1"/>
-                            <constraint firstItem="TpI-FA-3bm" firstAttribute="top" secondItem="er1-u7-FN9" secondAttribute="bottom" constant="15" id="Xcr-ee-9jb"/>
                             <constraint firstAttribute="trailing" secondItem="TpI-FA-3bm" secondAttribute="trailing" constant="15" id="aww-1q-CXQ"/>
                             <constraint firstItem="TpI-FA-3bm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="ccm-YF-aRI"/>
+                            <constraint firstItem="TpI-FA-3bm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="jmc-7P-vMc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XNn-0M-XHC" secondAttribute="bottom" constant="20" id="yvW-N1-is0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="TpI-FA-3bm" id="gTv-lO-DWO"/>
-                        <outlet property="segmentedControl" destination="er1-u7-FN9" id="6GN-WS-Jei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
