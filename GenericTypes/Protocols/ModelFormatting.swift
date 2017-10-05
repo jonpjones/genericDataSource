@@ -31,6 +31,9 @@ extension ModelFormatting {
 
 protocol CellType: ModelFormatting {
     associatedtype Cell: UICollectionViewCell, CellConfigurable
+    associatedtype Item
+    var item: Item { get }
+    var didSelect: ((Item) -> ())? { get set }
 }
 
 extension CellType where Cell.T == Self {

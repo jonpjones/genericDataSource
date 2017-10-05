@@ -36,31 +36,31 @@ class ViewController: UIViewController {
             print(itemC.description)
         }
         
-        let allA = Items.allA
-        allA.forEach { (item) in
-            item.didSelect = itemASelect
+        let allAViewModels = Items.allA.toViewModels()
+        allAViewModels.forEach { (viewModel) in
+            viewModel.didSelect = itemASelect
         }
         
-        let allB = Items.allB
-        allB.forEach { (item) in
-            item.didSelect = itemBSelect
+        let allBViewModels = Items.allB.toViewModels()
+        allBViewModels.forEach { (viewModel) in
+            viewModel.didSelect = itemBSelect
         }
         
-        let allC = Items.allC
-        allC.forEach { (item) in
-            item.didSelect = itemCSelect
+        let allCViewModels = Items.allC.toViewModels()
+        allCViewModels.forEach { (viewModel) in
+            viewModel.didSelect = itemCSelect
         }
         
-        dataSourceA = ArrayDataSource(from: Items.allA.toViewModels(), collectionView: collectionView) { (item) in
+        dataSourceA = ArrayDataSource(from: allAViewModels, collectionView: collectionView) { (item) in
             print("\(item)")
         }
-        let viewModelArrays: [[ModelFormatting]]  = [Items.allB.toViewModels(), Items.allA.toViewModels(), Items.allC.toViewModels()]
+        let viewModelArrays: [[ModelFormatting]]  = [allAViewModels, allBViewModels, allCViewModels]
         let flatArrayOfModels: [ModelFormatting] = viewModelArrays.flatMap({ $0 })
         
         dataSourceB = ArrayDataSource(from: flatArrayOfModels, collectionView: collectionView, layoutHelper: .horizontalStandard)
        
         let layoutHelper = VerticalDimension(height: 150, colCount: 1)
-        dataSourceC = ArrayDataSource(from: Items.allC.toViewModels(), collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
+        dataSourceC = ArrayDataSource(from: allCViewModels, collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))
         
         dataSourceA.assignAsDatasource(to: collectionView)
     }

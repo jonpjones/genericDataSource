@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
-class ItemCellViewModelB: CellType {    
+class ItemCellViewModelB: CellType {
     typealias Cell = CellB
+    
+    var didSelect: ((ItemB) -> ())?
     let item: ItemB
     
     init(item: ItemB) {
@@ -18,7 +20,7 @@ class ItemCellViewModelB: CellType {
     }
     
     func didSelectWith(indexPath: IndexPath) {
-        if let itemSelection = item.didSelect {
+        if let itemSelection = didSelect {
             itemSelection(item)
         }
     }

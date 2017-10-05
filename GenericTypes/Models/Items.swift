@@ -9,24 +9,13 @@
 import Foundation
 import UIKit
 
-protocol ViewModelItem {
-    associatedtype ViewModel
-    func convertToViewModel() -> ViewModel
-    
-    associatedtype Item
-    var didSelect: ((Item) -> ())? { get set }
-}
-
-
-class ItemA: ViewModelItem {
+class ItemA {
     let title: String
     let subtitle: String
-    var didSelect: ((ItemA) -> ())? 
 
-    init(title: String, subtitle: String, didSelect: ((ItemA) -> ())? = nil) {
+    init(title: String, subtitle: String) {
         self.title = title
         self.subtitle = subtitle
-        self.didSelect = didSelect
     }
     
     func convertToViewModel() -> ItemCellViewModelA {
@@ -34,15 +23,13 @@ class ItemA: ViewModelItem {
     }
 }
 
-class ItemB: ViewModelItem {
+class ItemB {
     let title: String
     let image: UIImage?
-    var didSelect: ((ItemB) -> ())?
 
-    init(title: String, image: UIImage, didSelect: ((ItemB) -> ())? = nil) {
+    init(title: String, image: UIImage) {
         self.title = title
         self.image = image
-        self.didSelect = didSelect
     }
     
     func convertToViewModel() -> ItemCellViewModelB {
@@ -50,15 +37,13 @@ class ItemB: ViewModelItem {
     }
 }
 
-class ItemC: ViewModelItem {
+class ItemC {
     let title: String
     let description: String
-    var didSelect: ((ItemC) -> ())?
     
-    init(title: String, description: String, didSelect: ((ItemC) -> ())? = nil) {
+    init(title: String, description: String) {
         self.title = title
         self.description = description
-        self.didSelect = didSelect
     }
     
     func convertToViewModel() -> ItemCellViewModelC {

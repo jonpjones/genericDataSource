@@ -11,6 +11,8 @@ import UIKit
 
 class ItemCellViewModelC: CellType {
     typealias Cell = CellC
+    
+    var didSelect: ((ItemC) -> ())?
     let item: ItemC
     
     init(item: ItemC) {
@@ -18,7 +20,7 @@ class ItemCellViewModelC: CellType {
     }
     
     func didSelectWith(indexPath: IndexPath) {
-        if let itemSelection = item.didSelect {
+        if let itemSelection = didSelect {
             itemSelection(item)
         }
     }
