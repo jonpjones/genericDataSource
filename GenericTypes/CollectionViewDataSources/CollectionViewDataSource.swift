@@ -82,7 +82,7 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = dataProvider.item(at: indexPath) {
-            self.didSelect(item)
+            item.didSelectWith(indexPath: indexPath)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

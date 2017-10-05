@@ -9,27 +9,57 @@
 import Foundation
 import UIKit
 
-struct ItemA {
+protocol ViewModelItem {
+    associatedtype ViewModel
+    func convertToViewModel() -> ViewModel
+    
+    associatedtype Item
+    var didSelect: ((Item) -> ())? { get set }
+}
+
+
+class ItemA: ViewModelItem {
     let title: String
     let subtitle: String
+    var didSelect: ((ItemA) -> ())? 
+
+    init(title: String, subtitle: String, didSelect: ((ItemA) -> ())? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.didSelect = didSelect
+    }
     
     func convertToViewModel() -> ItemCellViewModelA {
         return ItemCellViewModelA(item: self)
     }
 }
 
-struct ItemB {
+class ItemB: ViewModelItem {
     let title: String
     let image: UIImage?
+    var didSelect: ((ItemB) -> ())?
+
+    init(title: String, image: UIImage, didSelect: ((ItemB) -> ())? = nil) {
+        self.title = title
+        self.image = image
+        self.didSelect = didSelect
+    }
     
     func convertToViewModel() -> ItemCellViewModelB {
         return ItemCellViewModelB(item: self)
     }
 }
 
-struct ItemC {
+class ItemC: ViewModelItem {
     let title: String
     let description: String
+    var didSelect: ((ItemC) -> ())?
+    
+    init(title: String, description: String, didSelect: ((ItemC) -> ())? = nil) {
+        self.title = title
+        self.description = description
+        self.didSelect = didSelect
+    }
     
     func convertToViewModel() -> ItemCellViewModelC {
         return ItemCellViewModelC(item: self)
@@ -75,7 +105,7 @@ struct Items {
 extension Array where Element == ItemA {
     func toViewModels() -> [ItemCellViewModelA] {
         return self.map({ (item) -> ItemCellViewModelA in
-            return ItemCellViewModelA(item: item)
+            return item.convertToViewModel()
         })
     }
 }
@@ -83,7 +113,7 @@ extension Array where Element == ItemA {
 extension Array where Element == ItemB {
     func toViewModels() -> [ItemCellViewModelB] {
         return self.map({ (item) -> ItemCellViewModelB in
-            return ItemCellViewModelB(item: item)
+            return item.convertToViewModel()
         })
     }
 }
@@ -91,7 +121,7 @@ extension Array where Element == ItemB {
 extension Array where Element == ItemC {
     func toViewModels() -> [ItemCellViewModelC] {
         return self.map({ (item) -> ItemCellViewModelC in
-            return ItemCellViewModelC(item: item)
+            return item.convertToViewModel()
         })
     }
 }

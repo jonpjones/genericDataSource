@@ -22,7 +22,6 @@ class CellA: UICollectionViewCell, CellConfigurable {
     func config(_ viewModel: ItemCellViewModelA) {
         titleLabel.text = viewModel.item.title
         subtitleLabel.text = viewModel.item.subtitle
-        
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {

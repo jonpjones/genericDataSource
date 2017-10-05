@@ -18,11 +18,46 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let itemASelect: ((ItemA) -> ()) = { itemA in
+            print("item A got selected!")
+            print(itemA.title)
+            print(itemA.subtitle)
+        }
+        let itemBSelect: ((ItemB) -> ()) = { itemB in
+            print("item B got selected!")
+            print(itemB.title)
+        }
+        
+        let itemCSelect: ((ItemC) -> ()) = { itemC in
+            print("item C got selected!")
+            print(itemC.title)
+            print(itemC.description)
+        }
+        
+        let allA = Items.allA
+        allA.forEach { (item) in
+            item.didSelect = itemASelect
+        }
+        
+        let allB = Items.allB
+        allB.forEach { (item) in
+            item.didSelect = itemBSelect
+        }
+        
+        let allC = Items.allC
+        allC.forEach { (item) in
+            item.didSelect = itemCSelect
+        }
+        
         dataSourceA = ArrayDataSource(from: Items.allA.toViewModels(), collectionView: collectionView) { (item) in
             print("\(item)")
         }
+        let viewModelArrays: [[ModelFormatting]]  = [Items.allB.toViewModels(), Items.allA.toViewModels(), Items.allC.toViewModels()]
+        let flatArrayOfModels: [ModelFormatting] = viewModelArrays.flatMap({ $0 })
         
-        dataSourceB = ArrayDataSource(from: [Items.allB.toViewModels(), Items.allA.toViewModels(), Items.allC.toViewModels()], collectionView: collectionView, layoutHelper: .horizontalStandard)
+        dataSourceB = ArrayDataSource(from: flatArrayOfModels, collectionView: collectionView, layoutHelper: .horizontalStandard)
        
         let layoutHelper = VerticalDimension(height: 150, colCount: 1)
         dataSourceC = ArrayDataSource(from: Items.allC.toViewModels(), collectionView: collectionView, layoutHelper: .vertical(with: layoutHelper))

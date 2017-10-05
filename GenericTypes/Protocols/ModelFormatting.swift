@@ -14,12 +14,18 @@ protocol ModelFormatting {
     var reuseIdentifier: String { get }
     var cellSize: CGSize { get }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    func didSelectWith(indexPath: IndexPath)
 }
+
 
 extension ModelFormatting {
     func populate<C>(configurable: C) -> C where C: CellConfigurable, C.T == Self {
         configurable.config(self)
         return configurable
+    }
+    
+    func didSelectWith(indexPath: IndexPath) {
+        print("Item Selected at \(indexPath)")
     }
 }
 

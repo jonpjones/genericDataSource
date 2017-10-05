@@ -9,12 +9,18 @@
 import Foundation
 import UIKit
 
-class ItemCellViewModelC: CellType {    
+class ItemCellViewModelC: CellType {
     typealias Cell = CellC
     let item: ItemC
     
     init(item: ItemC) {
         self.item = item
+    }
+    
+    func didSelectWith(indexPath: IndexPath) {
+        if let itemSelection = item.didSelect {
+            itemSelection(item)
+        }
     }
 }
 

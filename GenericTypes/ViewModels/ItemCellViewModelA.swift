@@ -16,4 +16,10 @@ class ItemCellViewModelA: CellType {
     init(item: ItemA) {
         self.item = item
     }
+    
+    func didSelectWith(indexPath: IndexPath) {
+        if let itemSelection = item.didSelect {
+            itemSelection(item)
+        }
+    }
 }
