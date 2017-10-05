@@ -13,15 +13,10 @@ class ItemCellViewModelB: CellViewModel {
     typealias Cell = CellB
     
     var didSelect: ((ItemB) -> ())?
-    let item: ItemB
+    var item: ItemB
     
     init(item: ItemB) {
         self.item = item
     }
-    
-    func didSelectWith(indexPath: IndexPath) {
-        if let itemSelection = didSelect {
-            itemSelection(item)
-        }
-    }
+
 }

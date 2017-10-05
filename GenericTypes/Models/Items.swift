@@ -51,6 +51,30 @@ class ItemC {
     }
 }
 
+extension Array where Element == ItemA {
+    func toViewModels() -> [ItemCellViewModelA] {
+        return self.map({ (item) -> ItemCellViewModelA in
+            return item.convertToViewModel()
+        })
+    }
+}
+
+extension Array where Element == ItemB {
+    func toViewModels() -> [ItemCellViewModelB] {
+        return self.map({ (item) -> ItemCellViewModelB in
+            return item.convertToViewModel()
+        })
+    }
+}
+
+extension Array where Element == ItemC {
+    func toViewModels() -> [ItemCellViewModelC] {
+        return self.map({ (item) -> ItemCellViewModelC in
+            return item.convertToViewModel()
+        })
+    }
+}
+
 struct Items {
     static var allA = [
         ItemA(title: "First A", subtitle: "Testing OneTwo"),
@@ -84,31 +108,6 @@ struct Items {
         ItemC(title: "Third C", description: "Lorem ipsum and whatever else usually goes in the latin placeholder"),
         ItemC(title: "Fourth C", description: "Lorem ipsum and whatever else usually goes in the latin placeholder")
     ]
-}
-
-
-extension Array where Element == ItemA {
-    func toViewModels() -> [ItemCellViewModelA] {
-        return self.map({ (item) -> ItemCellViewModelA in
-            return item.convertToViewModel()
-        })
-    }
-}
-
-extension Array where Element == ItemB {
-    func toViewModels() -> [ItemCellViewModelB] {
-        return self.map({ (item) -> ItemCellViewModelB in
-            return item.convertToViewModel()
-        })
-    }
-}
-
-extension Array where Element == ItemC {
-    func toViewModels() -> [ItemCellViewModelC] {
-        return self.map({ (item) -> ItemCellViewModelC in
-            return item.convertToViewModel()
-        })
-    }
 }
 
 

@@ -17,7 +17,6 @@ protocol ModelFormatting {
     func didSelectWith(indexPath: IndexPath)
 }
 
-
 extension ModelFormatting {
     func populate<C>(configurable: C) -> C where C: CellConfigurable, C.T == Self {
         configurable.config(self)
@@ -29,29 +28,4 @@ extension ModelFormatting {
     }
 }
 
-protocol CellViewModel: ModelFormatting {
-    associatedtype Cell: UICollectionViewCell, CellConfigurable
-    associatedtype Item
-    var item: Item { get }
-    var didSelect: ((Item) -> ())? { get set }
-}
 
-extension CellViewModel where Cell.T == Self {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(Cell.self)", for: indexPath) as? Cell else {
-            fatalError("Casting error: \(#function)")
-        }
-        return populate(configurable: cell)
-    }
-    
-    var nibName: String {
-        return String(describing: type(of: Cell.self)).components(separatedBy: ".").first!
-    }
-    
-    var reuseIdentifier: String {
-        return String(describing: type(of: Cell.self)).components(separatedBy: ".").first!
-    }
-    var cellSize: CGSize {
-        return Cell.cellSize
-    }
-}

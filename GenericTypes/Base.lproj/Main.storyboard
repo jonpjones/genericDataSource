@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,7 +39,6 @@
                                 <color key="backgroundColor" red="0.77196115255355835" green="0.94357484579086304" blue="0.77426737546920776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="G4P-ks-FI7"/>
-                                    <constraint firstAttribute="width" constant="150" id="z1Z-em-CP2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Add New Cell">
@@ -64,7 +64,6 @@
                                 <color key="backgroundColor" red="0.95575350522994995" green="0.83461099863052368" blue="0.86726683378219604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="0QU-dg-WIL"/>
-                                    <constraint firstAttribute="width" constant="150" id="4Tw-nC-vNn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Remove Selected">
@@ -92,6 +91,8 @@
                             <constraint firstAttribute="trailing" secondItem="TpI-FA-3bm" secondAttribute="trailing" constant="15" id="aww-1q-CXQ"/>
                             <constraint firstItem="TpI-FA-3bm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="ccm-YF-aRI"/>
                             <constraint firstItem="TpI-FA-3bm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="jmc-7P-vMc"/>
+                            <constraint firstItem="sGa-3O-dD4" firstAttribute="width" secondItem="XNn-0M-XHC" secondAttribute="width" id="uzi-dc-cJj"/>
+                            <constraint firstItem="XNn-0M-XHC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="yos-sc-Rxd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XNn-0M-XHC" secondAttribute="bottom" constant="20" id="yvW-N1-is0"/>
                         </constraints>
                     </view>

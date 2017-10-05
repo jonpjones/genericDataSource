@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F251BC311F86B3FB00E3FE10 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251BC301F86B3FB00E3FE10 /* CellViewModel.swift */; };
 		F252FF251F796B460068F423 /* CellA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF231F796B460068F423 /* CellA.swift */; };
 		F252FF261F796B460068F423 /* CellA.xib in Resources */ = {isa = PBXBuildFile; fileRef = F252FF241F796B460068F423 /* CellA.xib */; };
 		F252FF2C1F799BD80068F423 /* CellB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252FF2A1F799BD80068F423 /* CellB.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F251BC301F86B3FB00E3FE10 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		F252FF231F796B460068F423 /* CellA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellA.swift; sourceTree = "<group>"; };
 		F252FF241F796B460068F423 /* CellA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CellA.xib; path = ../CellNibs/CellA.xib; sourceTree = "<group>"; };
 		F252FF2A1F799BD80068F423 /* CellB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellB.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				F2F95D2C1F7438810049D380 /* CellConfigurable.swift */,
 				F2D4912E1F8538A600EA90E2 /* ModelFormatting.swift */,
+				F251BC301F86B3FB00E3FE10 /* CellViewModel.swift */,
 				F2F95D411F75C0DC0049D380 /* DataProvider.swift */,
 			);
 			path = Protocols;
@@ -253,6 +256,7 @@
 				F2F95D111F72F9FC0049D380 /* ViewController.swift in Sources */,
 				F2F95D2D1F7438810049D380 /* CellConfigurable.swift in Sources */,
 				F2D4912D1F8532A600EA90E2 /* ItemCellViewModelC.swift in Sources */,
+				F251BC311F86B3FB00E3FE10 /* CellViewModel.swift in Sources */,
 				F2F95D0F1F72F9FC0049D380 /* AppDelegate.swift in Sources */,
 				F2F95D421F75C0DC0049D380 /* DataProvider.swift in Sources */,
 				F2F95D311F7441920049D380 /* CollectionViewDataSource.swift in Sources */,

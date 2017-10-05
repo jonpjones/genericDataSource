@@ -25,5 +25,8 @@ class CellA: UICollectionViewCell, CellConfigurable {
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        //Handle via responder chain
+        
     }
 }
