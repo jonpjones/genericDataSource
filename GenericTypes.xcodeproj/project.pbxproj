@@ -69,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F251BC321F86B57600E3FE10 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				F2F95D151F72F9FC0049D380 /* Assets.xcassets */,
+				F2F95D1A1F72F9FC0049D380 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		F252FF221F7958CE0068F423 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,17 +125,16 @@
 		F2F95D0D1F72F9FC0049D380 /* GenericTypes */ = {
 			isa = PBXGroup;
 			children = (
+				F2F95D0E1F72F9FC0049D380 /* AppDelegate.swift */,
+				F2F95D121F72F9FC0049D380 /* Main.storyboard */,
+				F2F95D171F72F9FC0049D380 /* LaunchScreen.storyboard */,
 				F2F95D321F75723D0049D380 /* Models */,
 				F2F95D241F74372F0049D380 /* Views */,
 				F2D491271F85325600EA90E2 /* ViewModels */,
-				F2F95D0E1F72F9FC0049D380 /* AppDelegate.swift */,
 				F252FF221F7958CE0068F423 /* ViewControllers */,
 				F2F95D3E1F7596CF0049D380 /* CollectionViewDataSources */,
 				F2F95D2B1F74383B0049D380 /* Protocols */,
-				F2F95D121F72F9FC0049D380 /* Main.storyboard */,
-				F2F95D151F72F9FC0049D380 /* Assets.xcassets */,
-				F2F95D171F72F9FC0049D380 /* LaunchScreen.storyboard */,
-				F2F95D1A1F72F9FC0049D380 /* Info.plist */,
+				F251BC321F86B57600E3FE10 /* Support */,
 			);
 			path = GenericTypes;
 			sourceTree = "<group>";
