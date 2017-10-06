@@ -14,7 +14,6 @@ protocol CellViewModel: ModelFormatting {
     associatedtype Item
     var item: Item { get set }
     var didSelect: ((Item) -> ())? { get set }
-    func didSelectWith(indexPath: IndexPath)
 }
 
 extension CellViewModel {
@@ -25,7 +24,7 @@ extension CellViewModel {
     }
 }
 
-extension CellViewModel where Cell.T == Self {
+extension CellViewModel where Cell.T == Self {    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(Cell.self)", for: indexPath) as? Cell else {
             fatalError("Casting error: \(#function)")

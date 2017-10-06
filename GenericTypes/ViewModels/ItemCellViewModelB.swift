@@ -18,5 +18,4 @@ class ItemCellViewModelB: CellViewModel {
     init(item: ItemB) {
         self.item = item
     }
-
 }
