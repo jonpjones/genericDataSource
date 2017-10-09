@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol VMHandlerC {
     func cellSelectedFor(viewModel: ItemCellViewModelC)
