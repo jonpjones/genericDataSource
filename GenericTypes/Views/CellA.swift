@@ -19,14 +19,16 @@ class CellA: UICollectionViewCell, CellConfigurable {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
+    weak var viewModel: ItemCellViewModelA?
+    
     func config(_ viewModel: ItemCellViewModelA) {
+        self.viewModel = viewModel
+        viewModel.cell = self
         titleLabel.text = viewModel.item.title
         subtitleLabel.text = viewModel.item.subtitle
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        
-        //Handle via responder chain
-        
+        viewModel?.tappedPrimaryButton()
     }
 }

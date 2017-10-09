@@ -13,8 +13,11 @@ class CellB: UICollectionViewCell, CellConfigurable {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var sportImageView: UIImageView!
+    weak var viewModel: ItemCellViewModelB?
     
     func config(_ viewModel: ItemCellViewModelB) {
+        self.viewModel = viewModel
+        viewModel.cell = self
         titleLabel.text = viewModel.item.title
         sportImageView.image = viewModel.item.image
     }

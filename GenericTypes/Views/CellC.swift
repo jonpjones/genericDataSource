@@ -13,8 +13,11 @@ class CellC: UICollectionViewCell, CellConfigurable {
     
     @IBOutlet var latinTextView: UITextView!
     @IBOutlet var titleLabel: UILabel!
+    weak var viewModel: ItemCellViewModelC?
     
     func config(_ viewModel: ItemCellViewModelC) {
+        self.viewModel = viewModel
+        viewModel.cell = self
         self.titleLabel.text = viewModel.item.title
         self.latinTextView.text = viewModel.item.description
     }

@@ -18,14 +18,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let flatArrayOfViewModels = getAllViewModels()
-        dataSourceA = ArrayDataSource(from: flatArrayOfViewModels, collectionView: collectionView, layoutHelper: .horizontalStandard)
+        dataSourceA = ArrayDataSource(from: flatArrayOfViewModels, collectionView: collectionView, layoutHelper: .verticalStandard)
         dataSourceA?.assignAsDatasource(to: collectionView)
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
         let itemB = ItemB(title: "New Sport", image: #imageLiteral(resourceName: "basketBall"))
         let bViewModel = itemB.convertToViewModel()
-        bViewModel.didSelect = bClosure()
         dataSourceA?.appendItem(value: bViewModel, in: 0)
     }
     
@@ -36,44 +35,34 @@ class ViewController: UIViewController {
     }
     
     func getAllViewModels() -> [ModelFormatting] {
-        let allAViewModels = Items.allA.toViewModels()
-        allAViewModels.forEach { (viewModel) in
-            viewModel.didSelect = self.aClosure()
-        }
-        
-        let allBViewModels = Items.allB.toViewModels()
-        allBViewModels.forEach { (viewModel) in
-            viewModel.didSelect = self.bClosure()
-        }
-        
-        let allCViewModels = Items.allC.toViewModels()
-        allCViewModels.forEach { (viewModel) in
-            viewModel.didSelect = self.cClosure()
-        }
-        
+        let allAViewModels = Items.allA.toViewModels(self)
+        let allBViewModels = Items.allB.toViewModels(self)
+        let allCViewModels = Items.allC.toViewModels(self)
         let viewModelArrays: [[ModelFormatting]]  = [allAViewModels, allBViewModels, allCViewModels]
         let flatArrayOfModels: [ModelFormatting] = viewModelArrays.flatMap({ $0 })
         return flatArrayOfModels
     }
-    
-    func aClosure() -> (ItemA) -> () {
-        let itemASelect: ((ItemA) -> ()) = { itemC in
-            print("item A got selected!")
-        }
-        return itemASelect
+}
+
+extension ViewController: VMHandlerA {
+    func cellButtonTapped(_: ItemCellViewModelA) {
+        print("tap received by view controller")
     }
     
-    func bClosure() -> (ItemB) -> () {
-        let itemBSelect: ((ItemB) -> ()) = { itemC in
-            print("item B got selected!")
-        }
-        return itemBSelect
+    func cellSelectedFor(viewModel: ItemCellViewModelA) {
+        print("selection received by view controller")
     }
-    func cClosure() -> (ItemC) -> () {
-        let itemCSelect: ((ItemC) -> ()) = { itemC in
-            print("item C got selected!")
-        }
-        return itemCSelect
+}
+
+extension ViewController: VMHandlerB {
+    func cellSelectedFor(viewModel: ItemCellViewModelB) {
+        print("selection received by view controller")
+    }
+}
+
+extension ViewController: VMHandlerC {
+    func cellSelectedFor(viewModel: ItemCellViewModelC) {
+        print("selection received by view controller")
     }
 }
 

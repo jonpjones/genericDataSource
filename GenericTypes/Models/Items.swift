@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class ItemA {
-    let title: String
-    let subtitle: String
+    var title: String
+    var subtitle: String
 
     init(title: String, subtitle: String) {
         self.title = title
@@ -24,7 +24,7 @@ class ItemA {
 }
 
 class ItemB {
-    let title: String
+    var title: String
     let image: UIImage?
 
     init(title: String, image: UIImage) {
@@ -38,8 +38,8 @@ class ItemB {
 }
 
 class ItemC {
-    let title: String
-    let description: String
+    var title: String
+    var description: String
     
     init(title: String, description: String) {
         self.title = title
@@ -52,25 +52,33 @@ class ItemC {
 }
 
 extension Array where Element == ItemA {
-    func toViewModels() -> [ItemCellViewModelA] {
+    func toViewModels(_ delegate: VMHandlerA? = nil) -> [ItemCellViewModelA] {
         return self.map({ (item) -> ItemCellViewModelA in
-            return item.convertToViewModel()
+            let vm = item.convertToViewModel()
+            vm.delegate = delegate
+            return vm
+            
         })
     }
 }
 
 extension Array where Element == ItemB {
-    func toViewModels() -> [ItemCellViewModelB] {
+    func toViewModels(_ delegate: VMHandlerB? = nil) -> [ItemCellViewModelB] {
         return self.map({ (item) -> ItemCellViewModelB in
-            return item.convertToViewModel()
+            let vm = item.convertToViewModel()
+            vm.delegate = delegate
+            return vm
+            
         })
     }
 }
 
 extension Array where Element == ItemC {
-    func toViewModels() -> [ItemCellViewModelC] {
+    func toViewModels(_ delegate: VMHandlerC? = nil) -> [ItemCellViewModelC] {
         return self.map({ (item) -> ItemCellViewModelC in
-            return item.convertToViewModel()
+            let vm = item.convertToViewModel()
+            vm.delegate = delegate
+            return vm
         })
     }
 }

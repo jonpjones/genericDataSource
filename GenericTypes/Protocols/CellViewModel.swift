@@ -9,18 +9,17 @@
 import Foundation
 import UIKit
 
-protocol CellViewModel: ModelFormatting {
+protocol CellViewModel: class, ModelFormatting {
     associatedtype Cell: UICollectionViewCell, CellConfigurable
     associatedtype Item
+    weak var cell: Cell? { get set }
     var item: Item { get set }
-    var didSelect: ((Item) -> ())? { get set }
+    var didSelect: ((Item) -> ()) { get set }
 }
 
 extension CellViewModel {
     func didSelectWith(indexPath: IndexPath) {
-        if let itemSelection = didSelect {
-            itemSelection(item)
-        }
+        didSelect(item)
     }
 }
 

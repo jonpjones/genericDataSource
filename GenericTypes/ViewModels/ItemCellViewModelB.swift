@@ -9,13 +9,35 @@
 import Foundation
 import UIKit
 
+protocol VMHandlerB {
+    func cellSelectedFor(viewModel: ItemCellViewModelB)
+}
+
 class ItemCellViewModelB: CellViewModel {
     typealias Cell = CellB
+    weak var cell: Cell?
     
-    var didSelect: ((ItemB) -> ())?
+    var delegate: VMHandlerB?
+    var didSelect: ((ItemB) -> ()) = { _ in }
     var item: ItemB
     
-    init(item: ItemB) {
+    init(item: ItemB, delegate: VMHandlerB? = nil) {
         self.item = item
+        self.delegate = delegate
+        self.didSelect = selectionClosure()
+    }
+    
+    func selectionClosure() -> ((Item) -> ()) {
+        return { [weak self] item in
+            if let weakSelf = self {
+                weakSelf.updateItemTitle()
+                weakSelf.cell?.config(weakSelf)
+                weakSelf.delegate?.cellSelectedFor(viewModel: weakSelf)
+            }
+        }
+    }
+    
+    private func updateItemTitle() {
+        self.item.title = "SELECTED V2"
     }
 }
